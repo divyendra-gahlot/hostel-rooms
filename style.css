@@ -1,0 +1,111 @@
+/* Basic Reset & Typography */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  header, footer {
+    background-color: #35424a;
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem 0;
+  }
+  
+  header h1 {
+    margin: 0.5rem 0;
+  }
+  
+  #rooms {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 2rem;
+  }
+  
+  /* Room Card Styling */
+  .room-card {
+    background: #ffffff;
+    border-radius: 5px;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .room-card h3 {
+    margin-top: 0;
+  }
+  
+  .room-card p {
+    margin: 0.5rem 0;
+  }
+  
+  .room-card .status {
+    display: block;
+    width: 25%;
+    padding: 0.5rem;
+    text-align: center;
+    border-radius: 3px;
+    color: #fff;
+    margin: 1rem 0;     /* top/bottom 1rem, left/right 0 */
+  }
+
+  .room-card .room-features {
+    padding-left: 1.25rem;   /* indent bullets */
+    margin: 0.5rem 0;
+  }
+  
+  .room-card .room-features li {
+    margin-bottom: 0.25rem;  /* space between items */
+    line-height: 1.4;
+  }
+
+  .room-card .room-videos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .room-card .room-videos video {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  
+  .status.available {
+    background: green;
+  }
+  
+  .status.booked {
+    background: red;
+  }
+
+  .room-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .room-images img {
+    width: 100%;
+    max-width: 360px;    /* 3 × 120px */
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    display: block;     /* removes any inline‐img whitespace */
+    object-fit: contain;
+  }
+  
+  
+  #rooms {
+    display: grid;
+    grid-template-columns: 1fr;  /* ← one column only */
+    gap: 1rem;
+    margin: 2rem;
+  }
+  
