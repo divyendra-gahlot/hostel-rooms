@@ -2,6 +2,7 @@
   {
     "id": 1,
     "name": "1. Vibrant Studio Appartment with attached kitchen and washroom",
+    "ideal for": "Double Occupancy",
     "description": "🪟 Bright & Airy: Well-ventilated room with ample natural sunlight and cooling breeze—perfect for summers.\n🚿 Attached Washroom: Comes with a clean, private in-room washroom for added comfort.\n 🧑‍🍳 Private Kitchen Setup: Includes a dedicated kitchen area for convenient cooking.\n🛏️ Spacious & Furnished: Fully furnished with a bed, study table, and chair—ideal for both comfort and productivity.\n📶 High-Speed WiFi: Seamless internet access for work or entertainment.\n💧 Water Purifier: Clean drinking water available at all times.\n🎥 24x7 CCTV Surveillance: Constant security monitoring for peace of mind.\n🌇 Safe Neighbourhood: Located in a secure and friendly locality.\n🔌 Power Backup: Uninterrupted electricity with reliable backup support.\n🪣 Utility Aangan: Designated space for washing utensils and drying clothes.",
     "price": "₹7999/month",
     "available": true,
@@ -18,6 +19,7 @@
   {
     "id": 2,
     "name": "2. Spacious 1 RK Studio Appartment with attached kitchen and washroom",
+    "ideal for": "Double Occupancy",
     "description": "🛏️ Spacious & Comfortable: A well-sized room that stays naturally cool during summers—ideal for a single student.\n🌿 Garden-Facing: Opens up to a lush garden view with excellent ventilation.\n🪑 Fully Furnished: Comes with a bed, study table, chair, and cupboard for daily comfort.\n🚿 Private Washroom: Separate, clean in-room bathroom for personal use.\n🍽️ Private Kitchen: Dedicated in-room kitchen space for your convenience.\n💧 Water Purifier: Safe and clean drinking water provided.\n⚡ 24x7 Utilities: Uninterrupted water and electricity supply ensured.\n🍱 Food Not Included: No in-house food, but plenty of tiffin services to choose from.\n🪣 Utility Aangan: Designated space for washing utensils and drying clothes.",
     "price": "₹7999/month",
     "available": true,
@@ -38,6 +40,7 @@
   {
     "id": 3,
     "name": "3. Budget Friendly Single Room with attached washroom",
+    "ideal for": "Single Occupancy",
     "description": "🛏️ Cozy and Comfortable: Perfectly sized for a single student or working professional.\n🚿 Attached Washroom: Comes with a private, in-room washroom for convenience.\n🍽️ Common Kitchen Access: While there's no private kitchen, a fully equipped shared kitchen is available for use.\n🪣 Utility Aangan: Includes a designated aangan area for washing utensils and drying clothes.\n🍱 Food Not Included: No in-house food, but plenty of tiffin services to choose from.\n🪣 Utility Aangan: Designated space for washing utensils and drying clothes.",
     "price": "₹3499/month",
     "available": false,
@@ -52,7 +55,8 @@
   },
   {
     "id": 4,
-    "name": "4. Compact Cozy Budget Friendly Room",
+    "name": "4. Compact Cozy Budget Friendly Solo Room",
+    "ideal for": "Single Occupancy",
     "description": "🛏️ Compact & Efficient: A small yet functional room, perfect for a single student.\n🌿 Garden-Facing: Opens up to a lush garden view with excellent ventilation.\n🪑 Fully Furnished: Comes with a bed, study table, chair, and cupboard for daily comfort.\n🚿 Common Washroom: Clean and accessible shared bathroom facilities.\n🍽️ Common Kitchen: Shared kitchen space available for your cooking needs.\n💧 Water Purifier: Safe and clean drinking water provided.\n⚡ 24x7 Utilities: Uninterrupted water and electricity supply ensured.\n🍱 Food Not Included: No in-house food, but plenty of tiffin services to choose from.\n🪣 Utility Aangan: Designated space for washing utensils and drying clothes.",
     "price": "₹3499/month",
     "available": true,
