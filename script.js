@@ -1,15 +1,22 @@
 // 1. Wait for the DOM to be ready
 document.addEventListener('DOMContentLoaded', () => {
-  // 2. Fetch your JSON data
-  fetch('./data.json')                    // adjust path if your data.json lives elsewhere
+  fetch('./data.json')
     .then(response => {
       if (!response.ok) throw new Error('Network response was not okay');
       return response.json();
     })
-    // 3. Once parsed, hand the array over to displayRooms()
-    .then(rooms => displayRooms(rooms))
+    .then(rooms => {
+      // bring all available:true to the front
+      rooms.sort((a, b) => {
+        // true > false, so b.available − a.available will push
+        // available rooms (true) to the front
+        return (b.available === true) - (a.available === true);
+      });
+      displayRooms(rooms);
+    })
     .catch(error => console.error('Error fetching room data:', error));
 });
+
 
 // 4. Your existing displayRooms function
 function displayRooms(rooms) {
