@@ -153,44 +153,4 @@ body {
     gap: 1rem;
     margin: 2rem;
   }
-
-  /* Nav links */
-/* .site-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-  margin: 0;
-  padding: 0;
-}
-
-.site-nav a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 500;
-  padding: 0.5rem 0.75rem;
-  border-radius: 4px;
-  transition: background 0.2s;
-}
-
-.site-nav a:hover {
-  background: rgba(255,255,255,0.15);
-} */
-
-
-
-/* Mobile breakpoint */
-/* @media (max-width: 700px) {
-  header {
-    flex-direction: column;
-    text-align: center;
-    gap: 1rem;
-  }
-  header .logo {
-    max-width: 100%;
-  }
-  .site-nav ul {
-    justify-content: center;
-    gap: 1rem;
-  }
-} */
   
