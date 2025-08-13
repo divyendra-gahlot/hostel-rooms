@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cozy Rooms Available</title>
 
-  <!-- Google Font (optional) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -24,8 +23,33 @@
         <p>Clean, safe, fully furnished rooms with great connectivity.</p>
       </div>
       <div class="header-cta">
-        <a class="btn" href="tel:8306709248">Call: 8306709248</a>
-        <a class="btn btn-outline" target="_blank" href="https://wa.me/918306709248" rel="noopener">WhatsApp</a>
+        <!-- Call button with icon -->
+        <a class="btn" href="tel:8306709248">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2
+                       19.79 19.79 0 0 1-8.63-3.07
+                       19.5 19.5 0 0 1-6-6
+                       19.79 19.79 0 0 1-3.07-8.67
+                       A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72
+                       c.12.9.31 1.77.57 2.61a2 2 0 0 1-.45 2.11L8 9
+                       a16 16 0 0 0 7 7l.56-1.23a2 2 0 0 1 2.11-.45
+                       c.84.26 1.71.45 2.61.57A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </span>
+          <span>8306709248</span>
+        </a>
+
+        <!-- WhatsApp button (white) with green icon -->
+        <a class="btn btn-wa" target="_blank" href="https://wa.me/918306709248" rel="noopener">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+              <path d="M19.1 17.3c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.3-.8.1c-1.1-.5-2-1.2-2.8-2.1-.2-.3-.3-.6 0-.9s.6-.7.8-1.1c.1-.2.1-.4 0-.6s-.7-1.7-.9-2.3-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.3 1.4 3.6c.2.3 2.4 3.6 5.8 5 3.5 1.4 3.5.9 4.1.9s2-.8 2.3-1.6.4-1.5.3-1.6c-.1-.1-.3-.2-.6-.4zM16 3C9.4 3 4 8.4 4 15c0 2.4.7 4.6 1.9 6.5L4 29l7.7-1.9c1.8 1 3.9 1.5 6.3 1.5 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 22.2c-2.2 0-4.2-.6-6-1.7l-.4-.2-4.4 1.1 1.2-4.3-.2-.4c-1.1-1.8-1.7-3.8-1.7-5.9C4.4 8.9 9.6 3.8 16 3.8S27.6 8.9 27.6 15.3 22.4 25.2 16 25.2z"/>
+            </svg>
+          </span>
+          <span>WhatsApp</span>
+        </a>
       </div>
     </div>
   </header>
@@ -57,9 +81,7 @@
 
   <!-- Main -->
   <main class="container">
-    <section id="rooms" class="rooms-grid" aria-live="polite">
-      <!-- Cards are injected by script.js -->
-    </section>
+    <section id="rooms" class="rooms-grid" aria-live="polite"></section>
   </main>
 
   <footer class="site-footer">
@@ -69,8 +91,6 @@
   </footer>
 
   <script src="script.js"></script>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
