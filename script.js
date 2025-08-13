@@ -1,94 +1,134 @@
-// 1. Wait for the DOM to be ready
+// Modernized list rendering with filter, sort, and tidy card header alignment.
+
+let ALL_ROOMS = [];
+
 document.addEventListener('DOMContentLoaded', () => {
   fetch('./data.json')
-    .then(response => {
-      if (!response.ok) throw new Error('Network response was not okay');
-      return response.json();
+    .then(r => {
+      if (!r.ok) throw new Error('Network response was not okay');
+      return r.json();
     })
     .then(rooms => {
-      // bring all available:true to the front
-      rooms.sort((a, b) => {
-        // true > false, so b.available − a.available will push
-        // available rooms (true) to the front
-        return (b.available === true) - (a.available === true);
-      });
-      displayRooms(rooms);
+      ALL_ROOMS = rooms;
+      bindControls();
+      render();
     })
-    .catch(error => console.error('Error fetching room data:', error));
+    .catch(err => console.error('Error fetching room data:', err));
 });
 
+function bindControls() {
+  const onlyAvail = document.getElementById('only-available');
+  const sort = document.getElementById('sort');
+  onlyAvail.addEventListener('change', render);
+  sort.addEventListener('change', render);
+}
 
-// 4. Your existing displayRooms function
+function render() {
+  const onlyAvail = document.getElementById('only-available').checked;
+  const sortBy = document.getElementById('sort').value;
+
+  let list = [...ALL_ROOMS];
+
+  // filter
+  if (onlyAvail) list = list.filter(r => r.available);
+
+  // sort
+  list.sort((a, b) => {
+    if (sortBy === 'available') {
+      return (b.available === true) - (a.available === true);
+    }
+    const pa = parseInt(String(a.price).replace(/[^\d]/g, ''), 10) || 0;
+    const pb = parseInt(String(b.price).replace(/[^\d]/g, ''), 10) || 0;
+    return sortBy === 'price-asc' ? pa - pb : pb - pa;
+  });
+
+  displayRooms(list);
+}
+
 function displayRooms(rooms) {
-  const roomsContainer = document.getElementById('rooms');
-  
+  const wrap = document.getElementById('rooms');
+  wrap.innerHTML = '';
+
   rooms.forEach(room => {
-    // Create a container for each room
-    const roomCard = document.createElement('div');
-    roomCard.classList.add('room-card');
+    const card = document.createElement('article');
+    card.className = 'room-card';
 
-    // Title
-    const roomTitle = document.createElement('h3');
-    roomTitle.textContent = room.name;
-    roomCard.appendChild(roomTitle);
+    // ----- Header (Title + Meta with occupancy & status) -----
+    const head = document.createElement('div');
+    head.className = 'room-head';
 
-    // Description
-    // const roomDesc = document.createElement('p');
-    // roomDesc.textContent = room.description;
-    // roomCard.appendChild(roomDesc);
+    const title = document.createElement('h3');
+    title.textContent = room.name;
+    head.appendChild(title);
 
-    const descLines = room.description.split('\n');
-    const descList  = document.createElement('ul');
-    descList.classList.add('room-features');
+    const meta = document.createElement('div');
+    meta.className = 'room-meta';
 
-    descLines.forEach(line => {
-      const li = document.createElement('li');
-      li.textContent = line.trim();
-      descList.appendChild(li);
-    });
-
-roomCard.appendChild(descList);
-
-    // Price
-    const roomPrice = document.createElement('p');
-    roomPrice.textContent = `Price: ${room.price}`;
-    roomCard.appendChild(roomPrice);
-
-    // Availability
-    const status = document.createElement('div');
-    status.classList.add('status', room.available ? 'available' : 'booked');
-    status.textContent = room.available ? 'Available' : 'Booked';
-    roomCard.appendChild(status);
-
-    // Video
-    if (room.videos && room.videos.length) {
-      const videoContainer = document.createElement('div');
-      videoContainer.classList.add('room-videos');
-
-      room.videos.forEach(videoPath => {
-        const videoEl = document.createElement('video');
-        videoEl.src = videoPath;       // path from your JSON
-        videoEl.controls = true;       // show play/pause, volume, etc.
-        videoEl.width = 300;           // or set via CSS
-        videoEl.style.marginTop = '1rem';
-        videoContainer.appendChild(videoEl);
-      });
-
-      roomCard.appendChild(videoContainer);
+    const ideal = room['ideal for']; // data.json uses a space in the key
+    if (ideal) {
+      const badge = document.createElement('span');
+      badge.className = 'pill';
+      badge.textContent = ideal;
+      meta.appendChild(badge);
     }
 
-    // Images
-    const imageContainer = document.createElement('div');
-    imageContainer.classList.add('room-images');
-    room.images.forEach(imgPath => {
-      const imgEl = document.createElement('img');
-      imgEl.src = imgPath;
-      imgEl.alt = room.name;
-      imageContainer.appendChild(imgEl);
-    });
-    roomCard.appendChild(imageContainer);
+    const status = document.createElement('span');
+    status.className = `status ${room.available ? 'available' : 'booked'}`;
+    status.textContent = room.available ? 'Available' : 'Booked';
+    meta.appendChild(status);
 
-    // Append card
-    roomsContainer.appendChild(roomCard);
+    head.appendChild(meta);
+    card.appendChild(head);
+    // ---------------------------------------------------------
+
+    // Price
+    const price = document.createElement('div');
+    price.className = 'price';
+    price.textContent = room.price;
+    card.appendChild(price);
+
+    // Features list (split by newline)
+    const list = document.createElement('ul');
+    list.className = 'room-features';
+    (room.description || '')
+      .split('\n')
+      .map(s => s.trim())
+      .filter(Boolean)
+      .forEach(line => {
+        const li = document.createElement('li');
+        li.textContent = line;
+        list.appendChild(li);
+      });
+    card.appendChild(list);
+
+    // Images
+    if (Array.isArray(room.images) && room.images.length) {
+      const grid = document.createElement('div');
+      grid.className = 'room-media';
+      room.images.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = room.name;
+        img.loading = 'lazy';
+        grid.appendChild(img);
+      });
+      card.appendChild(grid);
+    }
+
+    // Videos
+    if (Array.isArray(room.videos) && room.videos.length) {
+      const grid = document.createElement('div');
+      grid.className = 'room-media';
+      room.videos.forEach(src => {
+        const video = document.createElement('video');
+        video.src = src;
+        video.controls = true;
+        video.playsInline = true;
+        grid.appendChild(video);
+      });
+      card.appendChild(grid);
+    }
+
+    wrap.appendChild(card);
   });
 }

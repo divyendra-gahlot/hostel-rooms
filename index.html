@@ -1,47 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cozy Rooms Available</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Font (optional) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Inline favicon to avoid 404 -->
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect rx="12" width="64" height="64" fill="%230aa889"/><path d="M18 28h28v8H18z" fill="white"/></svg>'>
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Header Section -->
-  <header>
-    <h1>Cozy Rooms Available For Students And Working Professionals.</h1>
-    <p> Contact me at 8306709248</p>
-    <!-- <nav class="site-nav">
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#rooms">Rooms</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav> -->
-    <!-- Dark mode toggle -->
-  <!-- <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">🌙</button> -->
+  <!-- Header / Hero -->
+  <header class="site-header">
+    <div class="container header-grid">
+      <div>
+        <h1>Cozy Rooms for Students &amp; Working Professionals</h1>
+        <p>Clean, safe, fully furnished rooms with great connectivity.</p>
+      </div>
+      <div class="header-cta">
+        <a class="btn" href="tel:8306709248">Call: 8306709248</a>
+        <a class="btn btn-outline" target="_blank" href="https://wa.me/918306709248" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
   </header>
 
+  <!-- Toolbar (sticky) -->
+  <section class="toolbar">
+    <div class="container toolbar-row">
+      <div class="controls">
+        <label class="control">
+          <input type="checkbox" id="only-available" checked />
+          Show only available
+        </label>
 
-  <main> 
-    
-    <!-- Room List Section -->
-    <section id="rooms">
-      <!-- Room details will be dynamically injected here by script.js -->
-    </section>
-    
-    <!-- <section id="chatbot">
-      <div class="chat-window">
-        <div id="chat-log"></div>
-        <form id="chat-form">
-          <input type="text" id="chat-input" placeholder="Ask me anything…" autocomplete="off" />
-          <button type="submit">Send</button>
-        </form>
+        <label class="control">
+          Sort
+          <select id="sort" aria-label="Sort rooms">
+            <option value="available">Availability</option>
+            <option value="price-asc">Price: Low → High</option>
+            <option value="price-desc">Price: High → Low</option>
+          </select>
+        </label>
       </div>
-    </section> -->
-    
+
+      <div class="toolbar-cta">
+        <a class="chip" href="#rooms">Browse rooms</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main -->
+  <main class="container">
+    <section id="rooms" class="rooms-grid" aria-live="polite">
+      <!-- Cards are injected by script.js -->
+    </section>
   </main>
 
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year"></span> Cozy Rooms • Safe locality • 24×7 Utilities • High-speed Wi-Fi</small>
+    </div>
+  </footer>
+
   <script src="script.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
