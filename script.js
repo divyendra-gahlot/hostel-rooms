@@ -1,9 +1,9 @@
-// Image-first HERO slider:
-// - Loops images forever with a smooth fade/slide every 2s
-// - If the room has a video, it's shown BELOW the slider (not part of the loop)
+// Image HERO loops images with smooth transition every 2s.
+// Video (if any) is below the slider.
+// Occupancy + availability pills are in a visible meta row (NOT on the image).
 
 let ALL_ROOMS = [];
-let HERO_TIMERS = []; // to clear intervals on re-render
+let HERO_TIMERS = [];
 
 document.addEventListener('DOMContentLoaded', () => {
   fetch('./data.json')
@@ -18,7 +18,6 @@ function bindControls() {
 }
 
 function render() {
-  // stop old sliders
   HERO_TIMERS.forEach(clearInterval);
   HERO_TIMERS = [];
 
@@ -41,7 +40,6 @@ function render() {
 function startImageLoop(stage, images, altText) {
   if (!images.length) return null;
 
-  // Create slides
   const slides = images.map((src) => {
     const img = document.createElement('img');
     img.src = src;
@@ -52,22 +50,17 @@ function startImageLoop(stage, images, altText) {
     return img;
   });
 
-  // Show the first slide
   let i = 0;
   slides[0].classList.add('active');
 
-  // Loop every 2s
   const id = setInterval(() => {
     const current = slides[i];
     const nextIndex = (i + 1) % slides.length;
     const next = slides[nextIndex];
 
-    // animate out current, animate in next
     current.classList.remove('active');
-    current.classList.add('prev');          // slide out to the left
-    next.classList.add('active');           // slide/fade in
-
-    // cleanup the 'prev' flag after the transition
+    current.classList.add('prev');
+    next.classList.add('active');
     setTimeout(() => current.classList.remove('prev'), 650);
 
     i = nextIndex;
@@ -84,39 +77,21 @@ function displayRooms(rooms) {
     const card = document.createElement('article');
     card.className = 'room-card';
 
-    /* ---------- HERO SLIDER: images only, loops ---------- */
+    /* ---------- HERO SLIDER ---------- */
     const hero = document.createElement('div');
     hero.className = 'room-hero';
-
     const stage = document.createElement('div');
     stage.className = 'hero-stage';
     hero.appendChild(stage);
 
     const images = Array.isArray(room.images) ? room.images : [];
-
-    // Overlays on the hero
-    const status = document.createElement('span');
-    status.className = `status on-hero ${room.available ? 'available' : 'booked'}`;
-    status.textContent = room.available ? 'Available' : 'Booked';
-    hero.appendChild(status);
-
-    const ideal = room['ideal for'];
-    if (ideal) {
-      const p = document.createElement('span');
-      p.className = 'pill on-hero';
-      p.textContent = ideal;
-      hero.appendChild(p);
-    }
-
-    // Start image loop if there are images
     if (images.length) {
       const timer = startImageLoop(stage, images, room.name);
       if (timer) HERO_TIMERS.push(timer);
     }
-
     card.appendChild(hero);
 
-    /* ---------- VIDEO (if any) shown after the images ---------- */
+    /* ---------- VIDEO (if any) ---------- */
     if (Array.isArray(room.videos) && room.videos.length) {
       const vidWrap = document.createElement('div');
       vidWrap.className = 'room-video';
@@ -128,13 +103,32 @@ function displayRooms(rooms) {
       card.appendChild(vidWrap);
     }
 
-    /* ---------- TEXT CONTENT ---------- */
+    /* ---------- TEXT ---------- */
     const head = document.createElement('div');
     head.className = 'room-head';
     const title = document.createElement('h3');
     title.textContent = room.name;
     head.appendChild(title);
     card.appendChild(head);
+
+    // meta row: occupancy + availability (outside images)
+    const meta = document.createElement('div');
+    meta.className = 'room-meta';
+
+    const ideal = room['ideal for'];
+    if (ideal) {
+      const badge = document.createElement('span');
+      badge.className = 'pill';
+      badge.textContent = ideal;
+      meta.appendChild(badge);
+    }
+
+    const status = document.createElement('span');
+    status.className = `status ${room.available ? 'available' : 'booked'}`;
+    status.textContent = room.available ? 'Available' : 'Booked';
+    meta.appendChild(status);
+
+    card.appendChild(meta);
 
     const price = document.createElement('div');
     price.className = 'price';

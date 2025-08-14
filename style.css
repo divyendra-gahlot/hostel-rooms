@@ -18,8 +18,7 @@
   --radius:    16px;
 
   --font-base: 16px;
-  --font-lg:   18px;
-  --font-xl:   32px;
+  --font-xl:   34px; /* headline max size */
 }
 
 * { box-sizing: border-box; }
@@ -39,12 +38,19 @@ body{
 .site-header{
   color: #fff;
   background: linear-gradient(135deg, #06b6d4, #6366f1 55%, #0aa889);
-  padding: 2.25rem 0;
+  padding: 1.8rem 0;
 }
-.header-grid{ display:grid; gap: 1.25rem; grid-template-columns: 1fr; align-items:center; }
+.header-grid{ display:grid; gap: 1rem; grid-template-columns: 1fr; align-items:center; }
 @media (min-width: 880px){ .header-grid{ grid-template-columns: 1.4fr 1fr; } }
-.site-header h1{ font-size: clamp(20px, 3.2vw, 34px); line-height: 1.15; margin: 0 0 .25rem 0; font-weight: 700; }
-.site-header p{ margin:0; opacity:.95; }
+
+/* single impactful heading */
+.site-header h1{
+  font-size: clamp(22px, 4vw, var(--font-xl));
+  line-height: 1.15;
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
 
 /* Header actions */
 .header-cta{ display:grid; grid-template-columns: 1fr 1fr; gap:.75rem; justify-content:stretch; }
@@ -69,10 +75,23 @@ body{
 /* ================== Toolbar ================== */
 .toolbar{ position: sticky; top: 0; z-index: 30; backdrop-filter: blur(10px); background: rgba(246,247,249,.7); border-bottom: 1px solid var(--border); }
 .toolbar-row{ display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.8rem 0; }
-.controls{ display:flex; gap:1rem; flex-wrap:wrap; }
-.control{ display:flex; align-items:center; gap:.5rem; color:var(--muted); font-weight:600; }
+
+/* Keep checkbox and sort on the SAME row on mobile */
+.controls{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  flex-wrap: nowrap;          /* prevent line break on small screens */
+}
+.controls .control{ display:flex; align-items:center; gap:.5rem; color:#4b5563; font-weight:600; }
+.controls .control.sort{ margin-left: auto; }   /* pushes sort to the right */
+.controls .control.sort .label{ opacity:.8; }
 select, input[type="checkbox"]{ accent-color: var(--brand); }
-select{ border:1px solid var(--border); border-radius:10px; padding:.45rem .6rem; background:#fff; }
+select{
+  border:1px solid var(--border); border-radius:10px; padding:.45rem .6rem; background:#fff;
+  min-width: 150px;
+}
 
 /* ================== Rooms Grid ================== */
 .rooms-grid{ display:grid; grid-template-columns: 1fr; gap:1rem; padding:1.25rem 0 2rem; }
@@ -99,19 +118,20 @@ select{ border:1px solid var(--border); border-radius:10px; padding:.45rem .6rem
 .hero-slide.active{ opacity:1; transform: scale(1) translateX(0); z-index:2; }
 .hero-slide.prev{ opacity:0; transform: scale(1.02) translateX(-8%); z-index:1; }
 
-/* overlay pills on hero */
-.status.on-hero{ position:absolute; top:.6rem; right:.6rem; }
-.pill.on-hero{ position:absolute; bottom:.6rem; left:.6rem; }
-
-/* Title + price + details */
+/* Title + meta row */
 .room-head{ margin: .6rem 0 .35rem; }
 .room-card h3{ font-size: 1.05rem; margin: 0; line-height: 1.25; font-weight: 700; }
 
+.room-meta{
+  display:flex; align-items:center; gap:.4rem; flex-wrap: wrap;
+  margin-bottom: .4rem;
+}
+
+/* pill styles */
 .pill{
   background: var(--brand-50); color: var(--brand-600);
   padding:.35rem .6rem; border-radius:999px; font-size:.8rem; font-weight:700; white-space:nowrap;
 }
-
 .status{ padding:.35rem .6rem; border-radius:999px; color:#fff; font-weight:700; font-size:.8rem; box-shadow: var(--shadow); }
 .status.available{ background: var(--success); }
 .status.booked{ background: #9ca3af; }
@@ -121,7 +141,7 @@ select{ border:1px solid var(--border); border-radius:10px; padding:.45rem .6rem
 .room-features{ margin:.25rem 0 .75rem; padding-left:1.1rem; list-style:disc; color:var(--text); }
 .room-features li{ margin:.3rem 0; }
 
-/* Video directly under the slider (if present) */
+/* Video under slider (if present) */
 .room-video video{
   width:100%; height:220px; object-fit:cover;
   border-radius:12px; border:1px solid var(--border);
@@ -129,4 +149,4 @@ select{ border:1px solid var(--border); border-radius:10px; padding:.45rem .6rem
 }
 
 /* Footer */
-.site-footer{ border-top:1px solid var(--border); color:var(--muted); padding:1.25rem 0 2rem; text-align:center; }
+.site-footer{ border-top:1px solid var(--border); color:#6b7280; padding:1.25rem 0 2rem; text-align:center; }
