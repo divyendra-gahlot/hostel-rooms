@@ -76,7 +76,7 @@
     "ideal for": "Single Occupancy",
     "description": "🛏️ Compact & Efficient: A small yet functional room, perfect for a single student.\n🌿 Garden-Facing: Opens up to a lush garden view with excellent ventilation.\n🪑 Fully Furnished: Comes with a bed, study table, chair, and cupboard for daily comfort.\n🚿 Common Washroom: Clean and accessible shared bathroom facilities.\n🍽️ Common Kitchen: Shared kitchen space available for your cooking needs.\n💧 Water Purifier: Safe and clean drinking water provided.\n⚡ 24x7 Utilities: Uninterrupted water and electricity supply ensured.\n🍱 Food Not Included: No in-house food, but plenty of tiffin services to choose from.\n🪣 Utility Aangan: Designated space for washing utensils and drying clothes.",
     "price": "₹3499/month",
-    "available": true,
+    "available": false,
     "images": [
       "assets/images/room3_img1.jpg",
       "assets/images/room3_img2.jpg",
