@@ -1,0 +1,26 @@
+[
+  {
+    "id": "r1",
+    "name": "Rahul S.",
+    "rating": 5,
+    "text": "Clean rooms, friendly owner, and uninterrupted power backup. The Wi-Fi is genuinely fast for work and studies.",
+    "date": "2025-11-12",
+    "source": "Google Maps"
+  },
+  {
+    "id": "r2",
+    "name": "Ananya P.",
+    "rating": 4,
+    "text": "Loved the location (Kaakdeo). The washroom and kitchen setup was hygienic. Great security with CCTV.",
+    "date": "2025-08-03",
+    "source": "Google Maps"
+  },
+  {
+    "id": "r3",
+    "name": "Vivek K.",
+    "rating": 5,
+    "text": "Good ambience, safe neighbourhood, and prompt maintenance. The water purifier is a big plus.",
+    "date": "2025-06-21",
+    "source": "Google Maps"
+  }
+]
